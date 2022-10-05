@@ -33,30 +33,29 @@ public class AssignDefectSteps {
     @Then("The manager should see pending defects")
     public void theManagerShouldSeePendingDefects() {
 
-        //checking for pending defects by extracting text from Web element
-        WebElement defects = driver.findElement(By.xpath("/html/body/div/h3"));
-        String assignDefects = defects.getText();
+        //checking text from Web element
+        WebElement Defects = driver.findElement(By.xpath("/html/body/div/h3"));
+        String assignDefects = Defects.getText();
         Assertions.assertEquals("Assign Defects", assignDefects);
     }
 
     @When("The manager clicks on the select button for a defect")
     public void theManagerClicksOnTheSelectButtonForADefect() {
 
-        //Finding the web element for the select button and clicking on it
+        //Finding select button and clicking on it
         driver.findElement(By.xpath("/html/body/div/table/tbody/tr[1]/td[3]/button")).click();
     }
 
     @Then("The defect description should appear in bold")
     public void theDefectDescriptionShouldAppearInBold() {
 
-        //checking that the element for the descriptions exists
+        //checking if there is an element for the description
         WebElement bugTitle = driver.findElement(By.xpath("/html/body/div/div/h4"));
     }
 
     @When("The manager selects a tester from the drop down list")
     public void theManagerSelectsATesterFromTheDropDownList() {
 
-        //assigning the web element for the dropdown list and sending a value
         WebElement dropDown = driver.findElement(By.xpath("/html/body/div/div/input"));
         String value = dropDown.getAttribute("value");
         dropDown.sendKeys("ryeGuy");
@@ -72,7 +71,5 @@ public class AssignDefectSteps {
     @Then("The defect should disappear from the list")
     public void theDefectShouldDisappearFromTheList() {
 
-        //printing a statement that the defect has been assigned
-        System.out.println("defect assigned");
     }
 }
