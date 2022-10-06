@@ -6,6 +6,9 @@ import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import static org.junit.Assert.assertEquals;
 
 public class NavigationSteps {
 
@@ -13,7 +16,7 @@ public class NavigationSteps {
 
     @Then("The manager should see links for Matrices, Test Cases, Defect Reporting and Defect Overview")
     public void the_manager_should_see_links_for_matrices_test_cases_defect_reporting_and_defect_overview() {
-        // Write code here that turns the phrase above into concrete actions
+
         String Matrices = driver.findElement(By.xpath("//*[@id=\"root\"]/nav/a[1]")).getText();
         String TestCases = driver.findElement(By.xpath("//*[@id=\"root\"]/nav/a[2]")).getText();
         String DefectReporting = driver.findElement(By.xpath("//*[@id=\"root\"]/nav/a[3]")).getText();
@@ -60,10 +63,28 @@ public class NavigationSteps {
     @When("The manager clicks on {string}")
     public void the_manager_clicks_on(String string) {
 
+        if (string.equals("Matrices")) {
+            WebElement matrics = driver.findElement(By.xpath("//*[@id=\"root\"]/nav/a[1]"));
+            matrics.click();
+            driver.getTitle();
+        } else if (string.equals("Test Cases")) {
+            WebElement testCases = driver.findElement(By.xpath("//*[@id=\"root\"]/nav/a[2]"));
+            testCases.click();
+            driver.getTitle();
+        } else if (string.equals("Report a Defect")) {
+            WebElement reportaDefect = driver.findElement(By.xpath("//*[@id=\"root\"]/nav/a[3]"));
+            reportaDefect.click();
+        } else if (string.equals("Defect Overview")) {
+            WebElement defectOverview = driver.findElement(By.xpath("//*[@id=\"root\"]/nav/a[4]"));
+            defectOverview.click();
+        }
+
     }
 
     @Then("The title of page should be {string}")
     public void the_title_of_page_should_be(String string) {
+
+        assertEquals(string, driver.getTitle());
 
     }
 }

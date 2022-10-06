@@ -9,6 +9,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+
 public class AssignDefectSteps {
 
     public WebDriver driver = BugCatcherRunner.driver;
@@ -71,5 +75,13 @@ public class AssignDefectSteps {
     @Then("The defect should disappear from the list")
     public void theDefectShouldDisappearFromTheList() {
 
+        List<WebElement> rows = driver.findElements(By.xpath("//*[@id=\"root\"]/table/tbody/tr/td[1]"));
+        if (rows.size() > 1) {
+            System.out.println("defects are listed");
+        } else {
+            assertEquals(1, rows.size());
+        }
     }
+
 }
+
