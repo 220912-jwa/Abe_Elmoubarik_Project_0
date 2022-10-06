@@ -39,6 +39,6 @@ public class BugCatcherRunner {
     public static void teardown() {
 
         // clean up our resources
-        // driver.quit();
+        driver.quit();
     }
 }
